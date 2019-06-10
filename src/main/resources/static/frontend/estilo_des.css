@@ -1,0 +1,151 @@
+body {
+    background: rgba(51, 128, 0, 0.513); 
+}
+
+.titulo {
+    color:  rgb(255, 255, 255);
+    font-size: 40px;
+    text-align: center;
+    font-family: Verdana;
+}
+
+.entrada {
+    width: 350px;
+    align-self: center;
+    position: relative;
+    z-index: 999;
+    position: relative;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-family: Verdana;
+    }
+
+th, td {
+    text-align: center;
+    padding: 8px;
+    align-self: center;
+    font-family: Verdana;
+    }
+
+tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(odd){background-color: #959595}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+    }
+
+
+.campoentrada {
+    width: 50px;
+    font-family: Verdana;
+  }
+
+.divsaida {
+    z-index: 999;
+    position: relative;
+    width: 350px;
+    margin: 0 auto;
+    background: rgb(0, 87, 26);   
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-family: Verdana;
+    }
+
+.botao {
+    z-index: 999;
+    position: relative;
+    width: 250px;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-family: Verdana;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao2 {
+    z-index: 999;
+    position: relative;
+    width: 75%;
+    margin: 0 auto;
+    padding: 8px;
+    border-radius: 10px;
+    font-family: Verdana;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.saida {
+    width: 350px;
+    align-self: center;
+    position: relative;
+    z-index: 999;
+    position: relative;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-family: Verdana;
+    background-color: white;
+    }
+
+
+.saida th {
+    background-color: rgb(51, 128, 0);
+    color: white;
+}
+.saida tr:nth-child(even){background-color: #959595}
+.saida tr:nth-child(odd){background-color: #f2f2f2}
+
+.formulario1 {
+    width: 25%;
+    float: left;
+    align-self: right;
+    z-index: 999;
+    position: relative;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Verdana;
+    background-color: rgb(0, 255, 191);
+    }
+
+.formulario2 {
+    width: 25%;
+    float: right;
+    align-self: center;
+    z-index: 999;
+    position: relative;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Verdana;
+    background-color: rgb(0, 255, 191);
+    }
+
+.formulario3 {
+    width: 25%;
+    float: right;
+    align-self: center;
+    z-index: 999;
+    margin-left: 3.5%;
+    margin-right: 3.5%;
+    margin-bottom: 20px;
+    position: relative;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Verdana;
+    background-color: rgb(0, 255, 191);
+    }

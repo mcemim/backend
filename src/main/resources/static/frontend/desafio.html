@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Desafio - Frontend</title>
+    <link href="./estilo_des.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/43CB6CE8-B2F7-1844-9090-C65F431E534C/main.js" charset="UTF-8"></script></head>
+<body>
+    <div class="titulo">Desafio 2</div> 
+
+    <div id ="lista">
+    </div>
+
+    <div>
+        <button id="finaliza" type="submit" class="botao">Finalizar Pedido</button>
+    </div>
+
+    <div id ="lista2">
+    </div>
+
+    <div class="formulario1">
+        <form action="/action_page.php">
+            <div class="botao2">Nome do Item: </div>
+            <input type="text" name="itemname" id = "itemname" class="botao2"><br>
+            <button id="mudanome" type="submit" class="botao2">Incluir</button>
+        </form>
+    </div>
+
+    <div class="formulario2">
+        <form action="/action_page.php">
+            <div class="botao2">ID para Exclusão: </div>
+            <input type="text" name="idexcluir" id="idexcluir" class="botao2"><br>
+            <button id="exclui" type="submit" class="botao2">Excluir</button>
+        </form>
+    </div>
+
+    <div class="formulario3">
+        <form action="/action_page.php">
+            <div class="botao2">ID para Alteração: </div>
+            <input type="text" name="idalterar" id="idalterar" class="botao2"><br>
+            <div class="botao2">Novo Nome: </div>
+            <input type="text" name="novonome" id="novonome" class="botao2"><br>
+            <button id="altera" type="submit" class="botao2">Alterar</button>
+        </form>
+    </div>
+
+<script>
+    const url = "http://localhost:8080/produtos";
+    let listaitems ={};
+
+    fetch (url, {
+        method: 'GET',
+
+        headers: {
+            'Content-Type': 'application/json'
+            }
+        })
+    .then(response => {
+        return response.json();
+    })
+    .then(items => {
+        listaitems = items;
+        console.log(listaitems);
+        let listaHtml = '';
+        listaHtml = listaHtml +
+        `<table class="entrada">
+            <tr>
+                <th>ID</th>
+                <th>Item</th>
+                <th>Quantidade</th>
+            </tr>`;
+        items.forEach(item => {
+            listaHtml = listaHtml + 
+            `<tr>
+                <td>${item.id}</td>
+                <td>${item.name}</td>
+                <td>
+                    <input type="number" name="item${item.id}" id="item${item.id}" min="0" step="1" width= "50px" class="campoentrada" style="text-align:center;"/>
+                </td>
+            </tr>`;
+            });
+            listaHtml = listaHtml +
+            `</table>`;
+        document.getElementById('lista').innerHTML = listaHtml;
+    })
+
+    document.getElementById('finaliza').onclick = () => {
+        let itemsHtml = ''
+        itemsHtml =
+        `<div class = "divsaida">
+        <div class="titulo">Resumo</div>
+        <table class="saida">
+            <tr>
+                <th>Nome</th>
+                <th>Qtde</th>
+            </tr>`
+        listaitems.forEach(item => {
+            const qtditem = document.querySelector(`input#item${item.id}`).value;
+            if(qtditem>0) {
+                itemsHtml =  itemsHtml + 
+                `<tr>
+                    <td>${item.name}</td>
+                    <td>${qtditem}</td>
+                </tr>`;
+            };
+        })
+        itemsHtml = itemsHtml +
+        `</table>
+        </div>`;
+        document.getElementById('lista2').innerHTML = itemsHtml
+    }
+
+    document.getElementById('mudanome').onclick = (e) => {
+        e.preventDefault();
+        let novoItem = {
+            name: document.querySelector('input#itemname').value,
+            qtd: 0,
+            created_at: Date.now(),
+            updated_at: Date.now(),
+        };
+        fetch (url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+            },
+        body: JSON.stringify(novoItem)
+        })
+    .then(response => {
+        console.log(novoItem);
+        location.reload();
+    })
+    }
+
+    document.getElementById('exclui').onclick = (e) => {
+        e.preventDefault();
+        fetch (`${url}/${document.querySelector('input#idexcluir').value}`, {
+        method: 'DELETE'
+        })
+    .then(response => {
+        location.reload();
+    })
+    }
+
+    document.getElementById('altera').onclick = (e) => {
+        e.preventDefault();
+        let produto = {
+            name: document.querySelector('input#novonome').value,
+            updated_at: Date.now(),
+        };
+        fetch (`${url}/${document.querySelector('input#idalterar').value}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+            },
+        body: produto.name
+        })
+        .then(response => {
+            location.reload();
+        })
+    }   
+</script>
+
+</body>
